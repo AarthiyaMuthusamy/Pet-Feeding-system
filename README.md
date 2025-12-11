@@ -30,6 +30,37 @@ The system ensures pets get food at the correct time without human intervention,
 5) The system resets and waits for the next feeding detection.
 
 
+                 ┌──────────────────────────┐
+                 │        Pet Approaches     │
+                 └──────────────┬───────────┘
+                                │  (<30 cm)
+                                ▼
+                   ┌────────────────────────┐
+                   │ Ultrasonic Sensor (HC-SR04) │
+                   │  • Sends trigger pulse      │
+                   │  • Measures echo time        │
+                   └──────────────┬─────────────┘
+                                  │ Distance
+                                  ▼
+                     ┌──────────────────────────┐
+                     │      Arduino Board        │
+                     │  • Calculates distance    │
+                     │  • Runs servo logic       │
+                     └──────────────┬───────────┘
+                                   │ PWM Signal
+                                   ▼
+                     ┌──────────────────────────┐
+                     │      Servo Motor          │
+                     │  • Rotates flap 0°–180°   │
+                     │  • Dispenses food         │
+                     └──────────────┬───────────┘
+                                   │
+                                   ▼
+                         ┌──────────────────┐
+                         │  Food Released   │
+                         └──────────────────┘
+
+
 #Key Components 
 
 Arduino Uno / Nano – Main controller
